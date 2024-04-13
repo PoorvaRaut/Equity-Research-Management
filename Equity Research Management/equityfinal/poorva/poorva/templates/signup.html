@@ -1,0 +1,77 @@
+<!-- templates/signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/564x/2a/c7/e5/2ac7e5485b7a1b90e165868d37ad79b8.jpg'); /* Replace 'background_image.jpg' with your actual image file */
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+        }
+        #container {
+            width: 30%;
+            height:50%;
+            margin: 40px 180px;
+            right: 85px;
+            padding: 20px;
+            background-color:#404782 ;
+            border-radius: 15px;
+            position:fixed;
+            top:20%;
+            left:40%;
+
+             
+            float: right;
+            
+            
+        }
+        input[type="text"] {
+            padding: 20px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+           
+            width: calc(60% - 20px);
+        }
+        input[type="password"] {
+            padding: 20px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+           
+            width: calc(60% - 20px);
+        }
+
+        form button[type="submit"] {
+            padding: 6px 25px;
+            margin: 15px 15px;
+           
+            background-color: #23CBD4;
+            color: #fff;
+            font-size: 24px;
+            border-radius: 15px;
+            border: none;
+
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+     <div id="container">
+
+    <h1>Sign Up</h1>
+    <form action="{{ url_for('signup') }}" method="post">
+        <input type="text" name="username" placeholder="Username" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <button type="submit">Sign Up</button>
+    </form>
+    </div>
+</body>
+</html>

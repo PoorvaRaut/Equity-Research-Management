@@ -1,0 +1,215 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    
+    <style>
+    body {
+    background-image: url('https://i.pinimg.com/564x/2b/47/85/2b47858564a375b6628025752d3f74cf.jpg'); /* Replace 'background_image.jpg' with your actual image file */
+            background-size: cover;
+            background-repeat: no-repeat;
+
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+#searchcontainer {
+    width: 80%;
+    margin: 20px 250px;
+    padding: 10px;
+    background-color: ;
+    border-radius: 15px;
+    float: center;
+}
+
+#outcontainer{
+   width:10%;
+   float:right;
+}
+
+#addcontainer {
+    width: 21%;
+    height:47%;
+    margin: 1px 20px;
+    padding: 10px;
+    background-color: rgba(1,1,0,0.6);
+    border-radius: 5px;
+    /*border-style:groove;
+    border-color:#1BA7B3;*/
+    float: right;
+    position:absolute;
+    top: 34%;
+    left:74.5%;
+    text-align:center;
+}
+  
+#equicontainer{
+    width: 33%;
+    height:58%;
+    margin: 1px 20px;
+    padding: 8px;
+    background-color: rgba(1, 1, 0, 0.6);
+    border-radius: 5px;
+    /*border-style:solid;
+    border-color:#C40A0A;*/
+    float: center;
+    position: absolute; /* Position it absolutely */
+    top: 64%; /* Position it vertically at 50% from the top */
+    left: 56%; /* Position it horizontally at 50% from the left */
+    transform: translate(-50%, -50%); /* Adjust to center the container */
+    text-align:center;
+}
+
+#usercontainer{
+    width: 36%;
+    height:57%;
+    margin: 1px 20px;
+    padding: 8px;
+    background-color: rgba(1, 1, 0, 0.6);
+    border-radius: 15px;
+    border-style:solid;
+    border-color:#1BA7B3;
+
+    color:#fff;
+    float: center;
+    position: absolute; /* Position it absolutely */
+    top: 64%; /* Position it vertically at 50% from the top */
+    left: 19%; /* Position it horizontally at 50% from the left */
+    transform: translate(-50%, -50%); /* Adjust to center the container */
+    text-align:center;
+}
+
+
+
+
+h1 {
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    color:#fff;
+}
+
+li {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color:#fff;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+form input[type="text"],
+form input[type="number"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: calc(50% - 20px);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button[type="submit"] {
+    padding: 6px 20px;
+    
+    background-color: #2AB0A1;
+    color: #fff;
+    font-size:20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+a {
+    color:#D47647;
+    font-size:20px;
+    text-decoration: none;
+    
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+</style>
+</head>
+<body>
+    <div id = "searchcontainer">
+    <h1>Welcome to Equity Research Management</h1>
+    <h2>Search Stock Information</h2>
+    <form action="{{ url_for('get_stock_info_route') }}" method="post">
+        <input type="text" name="symbol" placeholder="Enter Stock Symbol" required>
+        <button type="submit">Search</button>
+    </form>
+    </div>
+
+    
+
+    <div id = "addcontainer">
+    <h2>Add Equity</h2>
+    <form action="{{ url_for('add_equity') }}" method="post">
+        <input type="text" name="name" placeholder="Equity Name" required><br>
+        <input type="text" name="ticker" placeholder="Ticker" required><br>
+        <input type="text" name="sector" placeholder="Sector" required><br>
+        <input type="number" name="market_cap" placeholder="Market Cap" step="0.01" required><br>
+        <input type="number" name="price" placeholder="Price" step="0.01" required><br>
+        <button type="submit">Add</button>
+    </form>
+    </div>
+
+
+    <div id = "equicontainer">
+    <h2>Equities</h2>
+    <ul>
+        {% for equity in equities %}
+            <li>
+                <form action="{{ url_for('update_equity', id=equity.id) }}" method="post">
+                    <input type="text" name="name" value="{{ equity.name }}" required><br>
+                    <input type="text" name="ticker" value="{{ equity.ticker }}" required><br>
+                    <input type="text" name="sector" value="{{ equity.sector }}" required><br>
+                    <input type="number" name="market_cap" value="{{ equity.market_cap }}" step="0.01" required><br>
+                    <input type="number" name="price" value="{{ equity.price }}" step="0.01" required><br>
+                    <a href="{{ url_for('get_equity_details', symbol=equity.ticker) }}">View Financial Analysis</a>
+                    <button type="submit">Update</button>
+                </form>
+                <a href="{{ url_for('delete_equity', id=equity.id) }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+    </div>
+   
+    <div id = "usercontainer">
+    <h1 style="underline">User Dashboard</h1>
+    
+    <h2>Total Market Value: ${{ total_market_value }}</h2>
+    
+    <h2>Equities</h2>
+    <ul>
+        {% for equity in equities %}
+            <li>
+                <p><strong>Name:</strong> {{ equity.name }}</p>
+                <p><strong>Ticker:</strong> {{ equity.ticker }}</p>
+                <p><strong>Sector:</strong> {{ equity.sector }}</p>
+                <p><strong>Market Cap:</strong> {{ equity.market_cap }}</p>
+                <p><strong>Price:</strong> {{ equity.price }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+    </div>
+
+    <div id = "out container">
+    <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equity Research Management App</title>
+    <style>
+    body {
+    background-image: url('https://i.pinimg.com/564x/89/67/ec/8967ec4d7d01974b61dad968fbe02553.jpg'); /* Replace 'background_image.jpg' with your actual image file */
+            background-size: cover;
+            background-repeat: no-repeat;
+
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+   
+}
+
+#container {
+    width: 50%;
+    margin: 20px 25px;
+    padding: 35px 15px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    position:absolute;
+    top:160px;
+    left:40px;
+    float:center;
+}
+
+h1 {
+    color:#ffffff;
+    text-align:center;
+ }
+
+p {
+    color: #6c757d; /* Dark gray color for paragraph text */
+}
+
+a {
+    color: #C92772;
+    font-size:24px;
+    text-decoration: none;
+   }
+
+a:hover {
+    text-decoration: underline; /* Underline links on hover */
+}
+</style>
+</head>
+<body>
+    
+    <h1 style="font-size: 56px ; color: #51ACDE align:center">Welcome!</h1>
+    <div id = "container">
+    <h1 style="font-size: 52px ; color: #fffff">Equity Research Management</h1>
+    <a href="{{ url_for('signup') }}">Sign Up |</a> <a href="{{ url_for('login') }}">Login</a>
+    </div>
+</body>
+</html>

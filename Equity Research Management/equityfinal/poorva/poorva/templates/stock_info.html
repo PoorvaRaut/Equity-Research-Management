@@ -1,0 +1,64 @@
+<!-- stock_info.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Information</title>
+
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/564x/2b/47/85/2b47858564a375b6628025752d3f74cf.jpg'); /* Replace 'background_image.jpg' with your actual image file */
+            background-size: cover;
+            background-repeat: no-repeat;
+
+
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        h1,h2 {
+          
+            color: #ffffff;         }
+        p {
+            margin-bottom: 10px;
+            color:#ffffff;
+        }
+        #container {
+    width: 50%;
+    height:90%;
+    margin: 1px 20px;
+    padding: 15px;
+    background-color: rgba(1,1,0,0.6);
+    border-radius: 5px;
+    /*border-style:groove;
+    border-color:#1BA7B3;*/
+    float: right;
+    position:absolute;
+    top: 3%;
+    left:23%;
+    text-align:center;
+
+        }
+        
+
+
+    </style>
+
+</head>
+<body>
+    <div id = "container">
+    <h1 style="font-size:52px">Stock Information</h1>
+    {% if stock_info %}
+        <p><strong>Symbol:</strong> {{ stock_info['Symbol'] }}</p>
+        <p><strong>Name:</strong> {{ stock_info['Name'] }}</p>
+        <p><strong>Exchange:</strong> {{ stock_info['Exchange'] }}</p>
+        <p><strong>Sector:</strong> {{ stock_info['Sector'] }}</p>
+        <!-- Add more fields as needed -->
+    {% else %}
+        <p>Failed to fetch stock information.</p>
+    {% endif %}
+    </div>
+</body>
+</html>

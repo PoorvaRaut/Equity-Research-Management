@@ -1,0 +1,82 @@
+<!-- equity_details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equity Details</title>
+    
+    <style>
+        body {
+            background-image: url('https://i.pinimg.com/564x/2b/47/85/2b47858564a375b6628025752d3f74cf.jpg'); /* Replace 'background_image.jpg' with your actual image file */
+            background-size: cover;
+            background-repeat: no-repeat;
+
+
+            font-family: Arial, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        h1,h2 {
+          
+            color: #ffffff;         }
+        p {
+            margin-bottom: 10px;
+            color:#ffffff;
+        }
+        #container {
+    width: 50%;
+    height:90%;
+    margin: 1px 20px;
+    padding: 15px;
+    background-color: rgba(1,1,0,0.6);
+    border-radius: 5px;
+    /*border-style:groove;
+    border-color:#1BA7B3;*/
+    float: right;
+    position:absolute;
+    top: 3%;
+    left:23%;
+    text-align:center;
+
+        }
+        .chart-img {
+            max-width: 100%;
+            height: auto;
+            color:#ffffff;
+        }
+        a { margin-top:3px;
+            margin-left:2px;
+            color:#73FBFD;
+            font-size:20px;
+            text-decoration: none;
+        }
+       a:hover {
+    text-decoration: underline;
+}
+
+
+    </style>
+</head>
+<body>
+    <div id = "container">
+    <h1 style="font-size:52px ">Equity Details</h1>
+     
+    <h2>{{ equity.name }}</h2>
+    <p><strong>Ticker:</strong> {{ equity.ticker }}</p>
+    <p><strong>Sector:</strong> {{ equity.sector }}</p>
+    <p><strong>Market Cap:</strong> {{ equity.market_cap }}</p>
+    <p><strong>Price:</strong> {{ equity.price }}</p>
+    
+    <h2>Financial Metrics</h2>
+    <!-- Display financial metrics here -->
+    
+    <!-- Display the equity performance chart -->
+    <h2>Equity Performance Chart</h2>
+    <img src="{{ url_for('equity_performance_chart', symbol=equity.ticker) }}" alt="Equity Performance Chart">
+    </div>
+    
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>
