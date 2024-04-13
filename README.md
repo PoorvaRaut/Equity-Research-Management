@@ -1,0 +1,1 @@
+# Equity-Research-Management
